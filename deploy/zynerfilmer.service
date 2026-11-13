@@ -1,0 +1,19 @@
+[Unit]
+Description=Zynerfilmer web backend
+After=network-online.target
+Wants=network-online.target
+[Service]
+Type=simple
+User=zynerfilmer
+Group=zynerfilmer
+WorkingDirectory=/opt/zynerfilmer
+EnvironmentFile=/etc/zynerfilmer.env
+Environment=HOME=/var/lib/zynerfilmer
+ExecStart=/usr/bin/node /opt/zynerfilmer/server.mjs
+Restart=on-failure
+TimeoutStopSec=45
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+[Install]
+WantedBy=multi-user.target

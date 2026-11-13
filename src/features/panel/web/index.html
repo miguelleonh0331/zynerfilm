@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Zynerfilmer</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
+<body>
+<aside><a class="brand" href="/">zyner<span>filmer</span><i>●</i></a><p class="eyebrow">CENTRO DE CONTROL</p>
+<div id="sidebar-content" hidden>
+<section class="add-section"><h2>Mis equipos</h2><p class="muted">Gestiona tus dispositivos desde aquí.</p><button id="open-add" class="full">＋ Agregar equipo</button></section>
+<section class="available"><div class="sidebar-heading"><h2>Equipos disponibles</h2><span id="count" class="count">0</span></div><button id="refresh" class="secondary full">↻ Actualizar estados</button><nav id="device-list" aria-label="Equipos disponibles"></nav></section>
+<button id="open-settings" class="secondary full">⚙ Configuración IA</button><button id="open-summary" class="secondary full">▤ Resumen de actividad</button><button id="logout" class="quiet">Cerrar sesión</button></div>
+<div class="aside-bottom"><span class="dot"></span> ADB · scrcpy · VPN</div></aside>
+<main><header><div><p class="eyebrow">VISTA GENERAL</p><h1>Todos tus equipos.</h1><p class="muted">Pulsa una pantalla para ampliarla y controlar el equipo.</p></div><span class="view-badge">▦ &nbsp; Vista de pantallas</span></header>
+<section id="login" class="card login"><h2>Accede a tu panel</h2><p class="muted">Introduce la clave de acceso de tu servidor.</p><form id="login-form"><label>Clave de acceso<input id="token" type="password" autocomplete="current-password" required></label><button>Entrar al panel →</button></form></section>
+<div id="workspace" hidden><section id="devices" class="screen-grid" aria-label="Pantallas de los equipos"></section><div id="empty" class="empty" hidden><div>▣</div><h2>Tu primera pantalla empieza aquí.</h2><p>Agrega un equipo desde la barra lateral.</p></div></div>
+<footer><span id="status" role="status" aria-live="polite">Preparando conexión…</span><span>ZYNERFILMER · VISTA MÚLTIPLE</span></footer></main>
+<dialog id="add-dialog" class="compact-dialog" aria-labelledby="add-title"><div class="popup-heading"><h2 id="add-title">Agregar equipo</h2><button id="cancel-add" class="quiet" type="button" aria-label="Cerrar formulario">✕</button></div><p class="muted">Introduce la dirección de la red o VPN y el puerto de conexión ADB.</p><form id="add-form"><label>Dirección IP<input id="ip" placeholder="192.0.2.10" autocomplete="off" required></label><label>Puerto<input id="port" type="number" min="1" max="65535" placeholder="5555" required></label><p id="add-error" class="popup-error" role="alert"></p><button id="add-button" type="submit">Agregar equipo</button></form></dialog>
+<dialog id="delete-dialog" class="compact-dialog" aria-labelledby="delete-title"><h2 id="delete-title">Eliminar equipo del panel</h2><p class="muted">Se quitará del catálogo y se cerrará su vista. No se borrará ningún dato del teléfono.</p><p id="delete-target"></p><p id="delete-error" class="popup-error" role="alert"></p><div class="popup-actions"><button id="cancel-delete" class="secondary">Cancelar</button><button id="confirm-delete" class="danger">Eliminar equipo</button></div></dialog>
+<dialog id="expanded" aria-labelledby="viewer-title"><div class="expanded-header"><div><p class="eyebrow">CONTROL REMOTO</p><h2 id="viewer-title"></h2></div><button id="close-screen" class="secondary">↙ Volver a miniaturas</button></div><div id="large-screen"></div><p id="viewer-status" role="status"></p><div class="phone-controls"><button data-key="back" class="secondary">◁ Atrás</button><button data-key="home" class="secondary">○ Inicio</button><button data-key="apps" class="secondary">□ Recientes</button><button data-key="wake" class="secondary">Encender pantalla</button></div><form id="text-form"><input id="remote-text" aria-label="Texto para enviar al teléfono" placeholder="Texto para enviar al teléfono" maxlength="150"><button>Enviar</button></form><p class="hint">Haz clic para tocar y arrastra para deslizar. Escape vuelve a la cuadrícula.</p></dialog>
+<dialog id="settings-dialog" class="compact-dialog" aria-labelledby="settings-title">
+<div class="popup-heading"><h2 id="settings-title">Configuración IA</h2><button id="close-settings" class="quiet" aria-label="Cerrar configuración" >✕</button></div>
+<p class="muted">Una cuenta ChatGPT compartida. Cada móvil mantiene su propio agente, preferencias y conversación. Los agentes comparten la cuota de la cuenta.</p>
+<p id="ai-account" role="status">Consultando cuenta…</p><p id="ai-error" class="popup-error" role="alert"></p>
+<button id="ai-connect">Conectar ChatGPT</button> <button id="ai-disconnect" class="secondary">Desconectar cuenta</button>
+<div id="ai-link" hidden><p>Abre el enlace e introduce este código:</p><p><a id="ai-verification" target="_blank" rel="noopener noreferrer">Abrir acceso de OpenAI ↗</a></p><code id="ai-code"></code><p class="muted">Completa el acceso en el navegador. El estado se actualiza automáticamente. Si OpenAI lo solicita, habilita el acceso por código en los ajustes de seguridad de tu cuenta.</p></div>
+<section class="audio-section"><h3>Oído del bot · Groq</h3>
+<p class="muted">Transcribe unos segundos del audio interno de cada video para que el agente decida con lo que ve y con lo que oye. Solo audio de reproducción, nunca el micrófono.</p>
+<p id="audio-state" role="status">Consultando oído…</p>
+<label>Clave de Groq<input id="audio-key" type="password" autocomplete="off" placeholder="gsk_…" maxlength="210" spellcheck="false"></label>
+<button id="save-audio" class="secondary">Guardar clave de Groq</button>
+<p class="muted">La clave se guarda solo en este servidor, fuera del repositorio y de los registros. El panel nunca la vuelve a mostrar.</p>
+<p id="audio-error" class="popup-error" role="alert"></p></section></dialog>
+<dialog id="summary-dialog" class="compact-dialog" aria-labelledby="summary-title">
+<div class="popup-heading"><h2 id="summary-title">Resumen de actividad</h2><button id="close-summary" class="quiet" type="button" aria-label="Cerrar resumen">✕</button></div>
+<p class="muted">Acumulado guardado en SQLite: se conserva entre reinicios y se borra al eliminar el equipo del panel.</p>
+<div id="summary-totals" class="summary-totals"></div>
+<div id="summary-detail"></div>
+<p id="summary-error" class="popup-error" role="alert"></p></dialog>
+<dialog id="agent-dialog" class="compact-dialog" aria-labelledby="agent-title"><div class="popup-heading"><h2 id="agent-title">Agente del móvil</h2><button id="close-agent" class="quiet" aria-label="Cerrar agente" >✕</button></div>
+<p id="agent-target" class="muted"></p>
+<div class="agent-selection"><label>Modelo<select id="agent-model"><option value="">Predeterminado de la cuenta</option></select></label><label>Esfuerzo<select id="agent-effort"><option value="">Predeterminado del modelo</option></select></label></div><button id="save-model" class="secondary">Guardar modelo y esfuerzo</button>
+<label>Preferencias de este móvil<textarea id="agent-preferences" maxlength="2000" rows="3" placeholder="Por ejemplo: tecnología, programación y nuevos dispositivos"></textarea></label><button id="save-preferences" class="secondary">Guardar preferencias</button>
+<section class="bot-controls"><h3>Bot TikTok</h3><p class="muted">Abre el feed de TikTok en este movil. El bot observa capturas, ve o pasa videos segun sus preferencias. Mientras trabaja, deténlo para usar el control manual.</p><div class="agent-selection"><label>Limite de videos<input id="bot-limit" type="number" min="1" max="100" value="10"></label><label>Segundos por video (±3 s)<input id="bot-watch" type="number" min="2" max="60" value="10"></label></div><label class="checkbox-label"><input id="bot-likes" type="checkbox"> Dar like al contenido que coincida</label><div class="popup-actions"><button id="save-task" type="button">Guardar tarea y volver</button></div><p class="muted">Inicia o deten el bot desde el menu de la miniatura. Al completar la tarea se bloquea la pantalla.</p><p id="bot-state" role="status"></p><div id="bot-log" role="log" aria-live="polite"></div></section>
+
+<div id="agent-messages" role="log" aria-live="polite"></div><p id="agent-state" role="status"></p><p id="agent-error" class="popup-error" role="alert"></p>
+<form id="agent-form"><label>Mensaje<input id="agent-input" maxlength="2000" required autocomplete="off"></label><button id="agent-send">Enviar</button></form></dialog>
+</body></html>

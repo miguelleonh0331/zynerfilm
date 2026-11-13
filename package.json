@@ -1,0 +1,26 @@
+{
+  "name": "zynerfilmer",
+  "version": "0.7.1",
+  "private": true,
+  "description": "Panel web y cliente Electron para controlar Android mediante ADB y scrcpy",
+  "type": "module",
+  "main": "src/features/desktop_electron/api/main.cjs",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "start": "node server.mjs",
+    "desktop": "electron .",
+    "test": "node --test tests/*.test.mjs src/features/agentes_ia/tests/*.test.mjs src/features/bot_tiktok/tests/*.test.mjs src/features/audio_groq/tests/*.test.mjs",
+    "package:win": "node scripts/package-electron.mjs"
+  },
+  "dependencies": {
+    "@openai/codex": "0.159.0",
+    "pngjs": "7.0.0",
+    "ws": "8.23.0"
+  },
+  "devDependencies": {
+    "@electron/packager": "20.3.0",
+    "electron": "45.3.1"
+  }
+}

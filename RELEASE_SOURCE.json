@@ -1,0 +1,32 @@
+{
+  "version": "0.7.1",
+  "sourceCommit": "05940ab117132be4588f5e5e313cebe5f29896cf",
+  "excluded": [
+    ".repo-agent-backups/docs__MODULE_MAP.md.20261113-120615.bak",
+    ".repo-agent-backups/docs__MODULE_MAP.md.20261113-120616.bak",
+    ".repo-agent-backups/docs__MODULE_MAP.md.20261113-120617.bak",
+    ".repo-agent-backups/docs__MODULE_MAP.md.20261113-120754.bak",
+    ".repo-agent-backups/docs__MODULE_MAP.md.20261113-121346.bak",
+    ".repo-agent-backups/docs__MODULE_MAP.md.20261113-122214.bak",
+    ".repo-agent-backups/docs__MODULE_MAP.md.20261113-122215.bak",
+    ".repo-agent-backups/docs__MODULE_MAP.md.20261113-123650.bak",
+    ".repo-agent-backups/docs__MODULE_MAP.md.20261113-123917.bak",
+    ".repo-agent-backups/docs__MODULE_MAP.md.20261113-124448.bak",
+    ".repo-agent-backups/docs__MODULE_MAP.md.20261113-125659.bak",
+    ".repo-agent-backups/docs__MODULE_MAP.md.20261113-131942.bak",
+    ".repo-agent-backups/docs__MODULE_MAP.md.20261113-132323.bak",
+    "LICENSES/motor-origen.json",
+    "docs/analysis/README.md",
+    "docs/analysis/rea-electron.json",
+    "docs/analysis/rea-managed.json",
+    "docs/requests/AI-006.md",
+    "docs/requests/AUDIO-009.md",
+    "docs/requests/BOT-007.md",
+    "docs/requests/BOT-008.md",
+    "docs/requests/DATA-004.md",
+    "docs/requests/MIG-001.md",
+    "docs/requests/MIG-002.md",
+    "docs/requests/UI-003.md"
+  ],
+  "note": "Snapshot sin historial privado, datos de dispositivos ni claves."
+}

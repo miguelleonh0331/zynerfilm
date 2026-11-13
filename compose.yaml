@@ -1,0 +1,13 @@
+services:
+  zynerfilmer:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:4317:4317"
+    env_file: .env
+    volumes:
+      - zynerfilmer-data:/data
+      - zynerfilmer-adb:/home/node/.android
+volumes:
+  zynerfilmer-data:
+  zynerfilmer-adb:

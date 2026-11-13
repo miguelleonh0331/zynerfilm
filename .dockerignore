@@ -1,0 +1,11 @@
+node_modules
+.git
+bin
+obj
+dist
+data
+verification
+.repo-agent-backups
+motor/*
+!motor/scrcpy-server
+.env
